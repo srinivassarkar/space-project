@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space Information</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul class="navbar-menu">
+        <li><a href="/3D-solar-system/index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Edutainment-Games</a>
+          <ul class="dropdown-menu">
+            <li><a href="../EdutainmentGames/quiz/index.html">Quizz</a></li>
+            <li>
+              <a href="../EdutainmentGames/planets-quiz/index.html"
+                >Drag&Drop</a
+              >
+            </li>
+            <li>
+              <a href="../EdutainmentGames/spaceGame/index.html"
+                >Meteoroid Shooter</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li><a href="../AstroReasearch/index.html">Astro-Research</a></li>
+        <li><a href="../About/index.html">About</a></li>
+        <li><a href="../FeedBackForm/index.html">Feedback</a></li>
+      </ul>
+    </nav>
+
+    <section id="apod">
+      <h1>Astronomy Picture of the Day</h1>
+      <div id="apod-content">
+        <p id="apod-info"></p>
+        <img id="apod-image" src="" alt="Astronomy Picture of the Day" />
+      </div>
+    </section>
+    <section id="asteroids">
+      <h1>Near-Earth Asteroids</h1>
+      <div id="asteroids-content"></div>
+    </section>
+    <section id="iss-tracker">
+      <h1>ISS Tracker & Space Metrics</h1>
+      <div id="iss-map"></div>
+      <div id="iss-metrics">
+        <p id="iss-coordinates"></p>
+        <p id="people-in-space"></p>
+        <p id="space-weather"></p>
+      </div>
+    </section>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <iframe
+      src="../chatbott.html"
+      frameborder="0"
+      width="400"
+      height="100%"
+      scrolling="auto"
+      style="position: fixed; bottom: 20px; right: 20px; z-index: 1000"
+    ></iframe>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script src="./script.js
+"></script>
+  </body>
+</html>
