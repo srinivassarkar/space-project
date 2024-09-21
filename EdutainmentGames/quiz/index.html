@@ -12,7 +12,12 @@
 
 
 
-<nav class="navbar">
+    
+      <nav class="navbar">
+        <div style="position: absolute; left: 50px;">
+          <span style="font-size: 28px; font-weight: bold; color: #ff9900; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">AKAASH</span>
+      </div>
+  
   <ul class="navbar-menu">
     <li><a href="../../index.html">Home</a></li>
     <li class="dropdown">
@@ -29,7 +34,7 @@
   </ul>
 </nav>
 
-<h1 style="position: absolute; top: 50px; left: 50%; transform: translateX(-50%); color: #ff9900; font-family: Arial, sans-serif; background-color: rgba(0, 0, 0, 0.5); text-align: center;">AKAASH</h1>
+
 
 
 
@@ -142,9 +147,234 @@
           </div>
         </div>
       </main>
-      <iframe src="/chatbott.html" frameborder="0" width="400" height="100%" scrolling="auto" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></iframe>
+      
 
 
-    <script src="./script.js"></script>
+    <script src="./script.js"></script>      
+             <style>
+          #chatbot {
+    width: 400px; /* Adjust width as needed */
+    height: 80%; /* Change this to a percentage of the viewport height */
+    max-height: 600px; /* Set a maximum height */
+    overflow: hidden;
+}
+
+
+
+#chatbot-input-container {
+    position: absolute; /* Position it at the bottom */
+    bottom: 0;
+    width: 100%; /* Full width */
+}
+
+            /* Chatbot Icon */
+            #chatbot-icon {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background-color: #1d5be6;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                z-index: 1000;
+            }
+    
+            #chatbot-icon img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+    
+            /* Chatbot Modal */
+            #chatbot-modal {
+                display: none;
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                width: 400px;
+                height: 500px;
+                background-color: #08286e;
+                border-radius: 10px 10px 0 0;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+            }
+    
+            /* Chatbot Header */
+            #chatbot-header {
+                background-color: #162447;
+                color: #e0e0e0;
+                padding: 10px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                text-align: center;
+                font-size: 18px;
+                font-weight: bold;
+                position: relative;
+            }
+    
+            /* Close Button */
+            #chatbot-close {
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                cursor: pointer;
+                font-size: 20px;
+            }
+    
+            /* Chatbot Body */
+            #chatbot-body {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                font-size: 16px; /* Increased font size for body text */
+    color: white; /* Changed text color to white */
+            }
+    
+            #chatbot-messages {
+                flex: 1;
+                padding: 15px;
+                max-height: 400px;
+                overflow-y: auto;
+            }
+            
+    
+            /* Chat Input and Send Button */
+            #chatbot-input-container {
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                background-color: #162447;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+    
+            #chatbot-input {
+                flex: 1;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin-right: 25px;
+                font-size: 14px;
+                background-color: #0f3460;
+                color: #e0e0e0;
+    color: white; /* Changed input text color to white */
+            }
+    
+            #chatbot-send {
+                padding: 10px;
+                background-color: #e43f5a;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                width: 60px;
+            }
+    
+            #chatbot-send:hover {
+                background-color: #d63447;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Chatbot Icon -->
+        <div id="chatbot-icon" onclick="toggleChatbot()">
+            <img src="https://miro.medium.com/v2/resize:fit:750/format:webp/1*C_LFPy6TagD1SEN5SwmVRQ.jpeg" alt="Chatbot" />
+        </div>
+    
+        <!-- Chatbot Modal -->
+        <div id="chatbot-modal">
+            <div id="chatbot-header">
+                Space Chatbot
+                <span id="chatbot-close" onclick="toggleChatbot()">×</span>
+            </div>
+    
+            <div id="chatbot-body">
+                <div id="chatbot-messages"></div>
+                <div id="chatbot-input-container">
+                    <input type="text" id="chatbot-input" placeholder="Ask me about space..." />
+                    <button id="chatbot-send">Send</button>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+            let chatbotOpen = false;
+    
+            // Toggle chatbot modal open and closed
+            function toggleChatbot() {
+                const chatbotModal = document.getElementById("chatbot-modal");
+    
+                if (chatbotOpen) {
+                    // Close chatbot
+                    chatbotModal.style.display = "none";
+                } else {
+                    // Open chatbot
+                    chatbotModal.style.display = "block";
+                }
+    
+                chatbotOpen = !chatbotOpen;
+            }
+    
+            document.addEventListener("DOMContentLoaded", function () {
+                const chatbotSendButton = document.getElementById("chatbot-send");
+                const chatbotInput = document.getElementById("chatbot-input");
+                const chatbotMessages = document.getElementById("chatbot-messages");
+    
+                chatbotSendButton.addEventListener("click", async function () {
+                    const userMessage = chatbotInput.value;
+                    if (userMessage.trim() === "") return;
+    
+                    // Display user message
+                    const userMessageElement = document.createElement("div");
+                    userMessageElement.textContent = "You: " + userMessage;
+                    chatbotMessages.appendChild(userMessageElement);
+    
+                    // Clear input
+                    chatbotInput.value = "";
+    
+                    // Fetch response from API
+                    const url = "https://llama-ai-mixtral-cohere-gpt-api.p.rapidapi.com/nllama3";
+                    const options = {
+                        method: "POST",
+                        headers: {
+                            "x-rapidapi-key": "e686b79b7amshff27384100c5590p14d625jsn46c6f6b7e4b6",
+                            "x-rapidapi-host": "llama-ai-mixtral-cohere-gpt-api.p.rapidapi.com",
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            messages: [{ role: "user", content: userMessage }],
+                            web_access: false,
+                            consider_chat_history: true,
+                            system_prompt: "",
+                            conversation_id: "",
+                        }),
+                    };
+    
+                    try {
+                        const response = await fetch(url, options);
+                        const result = await response.text();
+                        console.log("API Response:", result);
+    
+                        // Display bot response
+                        const botMessageElement = document.createElement("div");
+                        const responseJson = JSON.parse(result);
+                        const botResponse = responseJson.result;
+                        botMessageElement.textContent = "Bot: " + botResponse;
+                        chatbotMessages.appendChild(botMessageElement);
+                    } catch (error) {
+                        console.error(error);
+                        const errorMessageElement = document.createElement("div");
+                        errorMessageElement.textContent = "Bot: Sorry, something went wrong.";
+                        chatbotMessages.appendChild(errorMessageElement);
+                    }
+                });
+            });
+        </script>
   </body>
 </html>

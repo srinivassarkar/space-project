@@ -53,7 +53,7 @@ function start_timer(){
   timer = setInterval(function() {
     time = Math.floor((new Date - start) / 1000) + " seconds";
     $('.timer').html(time)
-    console.log(time)
+    //console.log(time)
   }, 1000);
 }
 
